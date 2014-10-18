@@ -17,17 +17,19 @@ module.exports = function(Ravel) {
   Ravel.registerSimpleParameter('google oauth2 android client id');
   Ravel.registerSimpleParameter('google oauth2 ios client id');
   Ravel.registerSimpleParameter('google oauth2 ios client secret');
+  Ravel.registerSimpleParameter('google oauth2 scope', true);
+  Ravel.set('google oauth2 scope', ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email']);
 
 
   GoogleOAuth2Provider.init = function(expressApp, passport, authCallback) {
   	expressApp.get('/auth/google', 
 	    passport.authenticate('google', {
-	      scope:'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+	      scope:Ravel.get('google oauth2 scope')
 	  }));
 
 	  expressApp.get('/auth/google/return',
 	    passport.authenticate('google', {
-	      scope:'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email', 
+	      scope:Ravel.get('google oauth2 scope'),
 	      failureRedirect: Ravel.get('login route'),
 	      successRedirect: Ravel.get('app route')
 	    })
