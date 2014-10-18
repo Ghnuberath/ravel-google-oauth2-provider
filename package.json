@@ -1,0 +1,20 @@
+{
+  "name": "ravel-google-oauth2-provider",
+  "version": "0.0.1",
+  "private": true,
+  "author": "Sean McIntyre <smcintyre@xverba.ca>",
+  "description": "Google OAuth2 Provider for Ravel Rapid Application Development Framework",
+  "contributors": [ 
+    {"name": "Sean McIntyre","email": "smcintyre@xverba.ca"} 
+  ],
+  "main":"ravel-google-oauth2-provider.js",
+  "dependencies": {
+    "passport-google-oauth":"*"
+  },
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-contrib-jshint":"*",
+    "grunt-contrib-watch" : "*",
+    "jshint-stylish": "*"
+  }
+}
