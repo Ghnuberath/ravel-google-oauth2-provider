@@ -11,7 +11,7 @@ module.exports = function(Ravel) {
   providers.push(GoogleOAuth2Provider);
   Ravel.set('authorization providers', providers);
 
-	//Google OAuth parameters
+  //Google OAuth parameters
   Ravel.registerSimpleParameter('google oauth2 web client id', true);
   Ravel.registerSimpleParameter('google oauth2 web client secret', true);
   Ravel.registerSimpleParameter('google oauth2 android client id');
@@ -22,44 +22,44 @@ module.exports = function(Ravel) {
 
 
   GoogleOAuth2Provider.init = function(expressApp, passport, authCallback) {
-  	expressApp.get('/auth/google', 
-	    passport.authenticate('google', {
-	      scope:Ravel.get('google oauth2 scope')
-	  }));
+    expressApp.get('/auth/google',
+      passport.authenticate('google', {
+        scope:Ravel.get('google oauth2 scope')
+    }));
 
-	  expressApp.get('/auth/google/return',
-	    passport.authenticate('google', {
-	      scope:Ravel.get('google oauth2 scope'),
-	      failureRedirect: Ravel.get('login route'),
-	      successRedirect: Ravel.get('app route')
-	    })
-	  );
+    expressApp.get('/auth/google/return',
+      passport.authenticate('google', {
+        scope:Ravel.get('google oauth2 scope'),
+        failureRedirect: Ravel.get('login route'),
+        successRedirect: Ravel.get('app route')
+      })
+    );
 
-	  passport.use(new GoogleStrategy({
-	      //https://cloud.google.com/console/project/1084472114850/apiui/credential
-	      //https://developers.google.com/+/web/signin/server-side-flow <- Super important
-	      clientID:Ravel.get('google oauth2 web client id'),
-	      clientSecret:Ravel.get('google oauth2 web client secret'),
-	      callbackURL: 'http://' + Ravel.get('app domain') +':' + Ravel.get('app port') + '/auth/google/return'
-	    },
-	    authCallback
-	  ));
+    passport.use(new GoogleStrategy({
+        //https://cloud.google.com/console/project/1084472114850/apiui/credential
+        //https://developers.google.com/+/web/signin/server-side-flow <- Super important
+        clientID:Ravel.get('google oauth2 web client id'),
+        clientSecret:Ravel.get('google oauth2 web client secret'),
+        callbackURL: 'http://' + Ravel.get('app domain') +':' + Ravel.get('app port') + '/auth/google/return'
+      },
+      authCallback
+    ));
   };
 
   GoogleOAuth2Provider.handlesClient = function(client) {
-  	return client === 'google-oauth2-ios' || 'google-oauth2-android' || 'google-oauth2-web';
+    return client === 'google-oauth2-ios' || 'google-oauth2-android' || 'google-oauth2-web';
   };
-  
+
   //Validates a bearer token and caches the result until that token's
   //expire time.
   //TODO do this locally instead of calling googleapis https://developers.google.com/accounts/docs/OAuth2Login#validatinganidtoken
   function validateToken(token, client, callback) {
     //mobile API auth based on google OAuth2 token supplied by client
-    //we need to determine who the client is, and map that to a profile 
+    //we need to determine who the client is, and map that to a profile
     //https://developers.google.com/accounts/docs/OAuth2UserAgent#validatetoken
     //http://android-developers.blogspot.ca/2013/01/verifying-back-end-calls-from-android.html
     https.get('https://www.googleapis.com/oauth2/v1/tokeninfo?scope=https://www.googleapis.com/auth/userinfo.profile+https://www.googleapis.com/auth/userinfo.email+&access_token='+token, function(res) {
-      var data = '';        
+      var data = '';
       res.on('data', function(chunk) {
         data+=chunk;
       });
@@ -113,7 +113,7 @@ module.exports = function(Ravel) {
         //use Google APIs to retrieve user profile
         //using given token. Token MUST have been requested with the
         //following scopes:
-        //- https://www.googleapis.com/auth/userinfo.profile 
+        //- https://www.googleapis.com/auth/userinfo.profile
         //- https://www.googleapis.com/auth/userinfo.email
         https.get({
             hostname:'www.googleapis.com',
