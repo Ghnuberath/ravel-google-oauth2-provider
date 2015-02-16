@@ -82,19 +82,19 @@ module.exports = function(Ravel) {
         var message;
         if (res.statusCode > 200 || obj['error']) {
           message = 'Client attempted to access API with an invalid OAuth token=' + token + ' for client \'' + client + '\'';
-          Ravel.Log.e(message);
+          Ravel.Log.error(message);
           callback(new Error(message), null);
         } else if (obj['audience'] !== String(audience)) {
           message = 'Client attempted to access API with a valid OAuth token=' + token + ' against client \'' + client + '\', but it is registered to a different application client';
-          Ravel.Log.e(message);
+          Ravel.Log.error(message);
           callback(new Error(message), null);
         } else if (obj['user_id']) {
           //allow bypass!
           callback(null, obj);
         } else {
           message = 'Could not translate valid Google OAuth token=' + token + ' into Google client id.';
-          Ravel.Log.e(message);
-          Ravel.Log.e(obj);
+          Ravel.Log.error(message);
+          Ravel.Log.error(obj);
           callback(new Error(message), null);
         }
       });
@@ -130,8 +130,8 @@ module.exports = function(Ravel) {
                 var obj = JSON.parse(data);
                 if (res.statusCode > 200 || obj['error']) {
                     var message = 'Could not translate valid Google OAuth token=' + token + ' into OAuth profile for client \'' + client + '\'';
-                    Ravel.Log.e(message);
-                    Ravel.Log.e(obj);
+                    Ravel.Log.error(message);
+                    Ravel.Log.error(obj);
                     callback(new Error(message), null);
                 } else {
                     var profile = {
