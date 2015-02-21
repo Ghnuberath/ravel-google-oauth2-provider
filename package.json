@@ -6,6 +6,11 @@
   "contributors": [
     {"name": "Sean McIntyre","email": "smcintyre@xverba.ca"}
   ],
+  "license":"MIT",
+  "repository" :{
+    "type" : "git",
+    "url" : "https://github.com/Ghnuberath/ravel.git"
+  },
   "main":"ravel-google-oauth2-provider.js",
   "dependencies": {
     "passport-google-oauth":"0.1.5"
