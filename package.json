@@ -4,7 +4,7 @@
   "author": "Sean McIntyre <s.mcintyre@xverba.ca>",
   "description": "Google OAuth2 Provider for Ravel Rapid Application Development Framework",
   "contributors": [
-    {"name": "Sean McIntyre","email": "smcintyre@xverba.ca"}
+    {"name": "Sean McIntyre","email": "s.mcintyre@xverba.ca"}
   ],
   "license":"MIT",
   "repository" :{
