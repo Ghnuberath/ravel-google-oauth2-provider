@@ -12,6 +12,8 @@ module.exports = function(Ravel) {
   Ravel.set('authorization providers', providers);
 
   //Google OAuth parameters
+  Ravel.registerSimpleParameter('app domain', true);
+  Ravel.registerSimpleParameter('app port', true);
   Ravel.registerSimpleParameter('google oauth2 web client id', true);
   Ravel.registerSimpleParameter('google oauth2 web client secret', true);
   Ravel.registerSimpleParameter('google oauth2 android client id');
