@@ -1,5 +1,5 @@
 {
-  "version": "0.17.0",
+  "version": "0.18.0",
   "name": "ravel-google-oauth2-provider",
   "author": "Sean McIntyre <s.mcintyre@xverba.ca>",
   "description": "Google OAuth2 Provider for Ravel Rapid Application Development Framework",
@@ -16,7 +16,7 @@
     "passport-google-oauth20":"1.0.0"
   },
   "peerDependencies": {
-    "ravel": "0.17.x"
+    "ravel": "0.18.x"
   },
   "devDependencies": {
     "eslint": "2.8.0",
